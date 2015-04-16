@@ -3,12 +3,12 @@
 var express = require('express');
 var passport = require('passport');
 var config = require('../config/environment');
-var User = require('../api/user/user.model');
+var Host = require('../api/host/host.model');
 
 // Passport Configuration
-require('./local/passport').setup(User, config);
-require('./facebook/passport').setup(User, config);
-require('./google/passport').setup(User, config);
+require('./local/passport').setup(Host, config);
+require('./facebook/passport').setup(Host, config);
+require('./google/passport').setup(Host, config);
 
 var router = express.Router();
 

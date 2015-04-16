@@ -2,18 +2,19 @@
 
 angular.module 'snappyRsvpApp'
 .controller 'MainCtrl', ($scope, $http) ->
-  $scope.awesomeThings = []
+  $scope.events = []
 
-  $http.get('/api/things').success (awesomeThings) ->
-    $scope.awesomeThings = awesomeThings
-    
+  $http.get('/api/events').success (events) ->
+    $scope.events = events
 
-  $scope.addThing = ->
-    return if $scope.newThing is ''
-    $http.post '/api/things',
-      name: $scope.newThing
 
-    $scope.newThing = ''
+  $scope.addEvent = ->
+    console.log("sup")
+    return if $scope.newEvent is ''
+    $http.post '/api/events',
+      name: $scope.newEvent
 
-  $scope.deleteThing = (thing) ->
-    $http.delete '/api/things/' + thing._id
+    $scope.newEvent = ''
+
+  $scope.deleteEvent = (event) ->
+    $http.delete '/api/event/' + event._id

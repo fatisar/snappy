@@ -1,14 +1,30 @@
 'use strict'
 
 angular.module 'snappyRsvpApp'
-.factory 'User', ($resource) ->
-  $resource '/api/users/:id/:controller',
+.factory 'Host', ($resource) ->
+  $resource '/api/hosts/:id/:controller',
     id: '@_id'
   ,
     changePassword:
-      method: 'PUT'
+          method: 'PUT'
+          params:
+            controller: 'password'
+
+    get:
+      method: 'GET'
       params:
-        controller: 'password'
+        id: 'me'
+
+
+angular.module 'snappyRsvpApp'
+.factory 'Guest', ($resource) ->
+  $resource '/api/guests/:id/:controller',
+    id: '@_id'
+  ,
+    changePassword:
+          method: 'PUT'
+          params:
+            controller: 'password'
 
     get:
       method: 'GET'

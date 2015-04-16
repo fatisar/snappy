@@ -1,8 +1,8 @@
 'use strict'
 
 angular.module 'snappyRsvpApp'
-.factory 'Auth', ($location, $rootScope, $http, User, $cookieStore, $q) ->
-  currentUser = if $cookieStore.get 'token' then User.get() else {}
+.factory 'Auth', ($location, $rootScope, $http, Host, $cookieStore, $q) ->
+  currentUser = if $cookieStore.get 'token' then Host.get() else {}
 
   ###
   Authenticate user and save token
@@ -19,7 +19,7 @@ angular.module 'snappyRsvpApp'
 
     .success (data) ->
       $cookieStore.put 'token', data.token
-      currentUser = User.get()
+      currentUser = Host.get()
       deferred.resolve data
       callback?()
 
@@ -50,10 +50,10 @@ angular.module 'snappyRsvpApp'
   @return {Promise}
   ###
   createUser: (user, callback) ->
-    User.save user,
+    Host.save user,
       (data) ->
         $cookieStore.put 'token', data.token
-        currentUser = User.get()
+        currentUser = Host.get()
         callback? user
 
       , (err) =>
@@ -72,7 +72,7 @@ angular.module 'snappyRsvpApp'
   @return {Promise}
   ###
   changePassword: (oldPassword, newPassword, callback) ->
-    User.changePassword
+    Host.changePassword
       id: currentUser._id
     ,
       oldPassword: oldPassword
