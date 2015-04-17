@@ -1,0 +1,6 @@
+div.container
+  h1 {{event.name}}
+    h4 {{event.startTime | date}}
+    h4  {{event.address}}
+div.container
+  button.btn.btn-primary(ng-click='showGuestInput = true') Add guests

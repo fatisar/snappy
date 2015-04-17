@@ -14,7 +14,7 @@ var validationError = function(res, err) {
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
-  Event.find({}, '-salt -hashedPassword', function (err, events) {
+  Event.find({}, function (err, events) {
     if(err) return res.send(500, err);
     res.json(200, events);
   });

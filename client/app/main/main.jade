@@ -11,9 +11,32 @@ header#banner.hero-unit
       h1.page-header Events:
       ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='event in events')
         li
-          a(href='#', tooltip='{{event.location}}')
+          a(ng-href='/event/{{event._id}}', tooltip='{{event.location}}')
             | {{event.name}}
       button.btn(ng-click='showEventForm = true') Add event
+
+  .row(ng-show='showEventForm')
+      form.simple-form(ng-submit='saveEvent()' novalidate)
+        .row
+          .col-md-6 Name
+          .col-md-6
+            input(type='text', ng-model='newEvent.name')
+        .row
+          .col-md-6 Address
+          .col-md-6
+            input(type='text', ng-model='newEvent.address')
+        .row
+          .col-md-6 Start Time
+          .col-md-6
+            p.input-group
+              input.form-control(type='text', datepicker-popup='{{format}}', is-open='opened' ng-model='newEvent.startTime', ng-required='true')
+              span.input-group-btn
+                button.btn.btn-default(ng-click='toggle($event)')
+                  i.glyphicon.glyphicon-calendar
+
+        button.btn.btn-primary(type='submit')
+          | Save
+
 
 footer.footer
   .container
